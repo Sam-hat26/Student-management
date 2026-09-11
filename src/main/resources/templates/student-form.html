@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+    <link rel="icon" type="image/png" th:href="@{/image/logo.png}">
+    <link rel="stylesheet" th:href="@{/css/Front.css}">
+</head>
+
+<body>
+
+    <header class="header-center">
+        <img th:src="@{/image/logo.png}" height="120" width="120" id="mg" alt="Student Management Logo">
+        <h1 th:text="${student.id == null ? 'Add New Student' : 'Edit Student'}">Add New Student</h1>
+    </header>
+
+    <div class="form-container">
+        <form th:action="@{/students/save}" th:object="${student}" method="post" id="sam">
+            <!-- Hidden field for ID to ensure updates work correctly -->
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-group">
+                <label for="ip1"><b class="italic-label">Student Name:</b></label>
+                <input type="text" th:field="*{studentName}" placeholder="Enter full name" minlength="2" maxlength="50"
+                    required id="ip1" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label><b class="italic-label">Gender:</b></label>
+                <div class="radio-group">
+                    <label class="radio-inline">
+                        <input type="radio" th:field="*{gender}" value="male" required> Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" th:field="*{gender}" value="female"> Female
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ip2"><b class="italic-label">Email ID:</b></label>
+                <input type="email" th:field="*{email}" placeholder="student@example.com" required id="ip2"
+                    class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="ip3"><b class="italic-label">Mobile No:</b></label>
+                <input type="tel" th:field="*{mobilno}" placeholder="1234567890" pattern="[0-9]{10,12}" maxlength="12"
+                    required id="ip3" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label><b class="italic-label">Course:</b></label>
+                <div class="radio-group">
+                    <label class="radio-inline">
+                        <input type="radio" th:field="*{course}" value="BCA" required> BCA
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" th:field="*{course}" value="BCOM"> BCOM
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="semester"><b class="italic-label">Semester:</b></label>
+                <select th:field="*{semester}" id="semester" class="form-control" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="Semester 1">Semester 1</option>
+                    <option value="Semester 2">Semester 2</option>
+                    <option value="Semester 3">Semester 3</option>
+                    <option value="Semester 4">Semester 4</option>
+                    <option value="Semester 5">Semester 5</option>
+                    <option value="Semester 6">Semester 6</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ip5"><b class="italic-label">Comment:</b></label>
+                <input type="text" th:field="*{comment}" maxlength="100" placeholder="Additional notes or comments"
+                    id="ip5" class="form-control">
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Save Student" class="italic-button btn-save">
+                <input type="reset" value="Clear" class="italic-button btn-clear">
+            </div>
+        </form>
+
+        <div class="back-link-container">
+            <a th:href="@{/student}" class="btn-back">View Student Directory & Network Graph &rarr;</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+/mvnw text eol=lf
+*.cmd text eol=crlf
+
+# Enable language detection for Java, HTML, and CSS on GitHub
+*.java linguist-detectable=true
+*.html linguist-detectable=true
+*.css linguist-detectable=true
+
